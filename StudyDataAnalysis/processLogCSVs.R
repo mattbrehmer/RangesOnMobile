@@ -190,10 +190,11 @@ locate_date.df$normalized_chron_distance[locate_date.df$normalized_chron_distanc
 #subset to test_data
 locate_date_test.df <- locate_date.df[locate_date.df$training == F & locate_date.df$gotcha == F,]
 
-locate_date_outliers.df <- locate_date_test.df[locate_date_test.df$response_time > mean(locate_date_test.df$response_time) + 3 * sd(locate_date_test.df$response_time),]
+locate_date_outliers_init.df <- locate_date_test.df[locate_date_test.df$response_time > mean(locate_date_test.df$response_time) + 3 * sd(locate_date_test.df$response_time),]
+locate_date_outliers.df <- locate_date_test.df[log(locate_date_test.df$response_time/1000) > mean(log(locate_date_test.df$response_time/1000)) + 3 * sd(log(locate_date_test.df$response_time/1000)),]
 
 #remove RT outliers (mean + 3 * SD)
-locate_date_test.df <- locate_date_test.df[locate_date_test.df$response_time < mean(locate_date_test.df$response_time) + 3 * sd(locate_date_test.df$response_time),]
+locate_date_test.df <- locate_date_test.df[log(locate_date_test.df$response_time/1000) < mean(log(locate_date_test.df$response_time/1000)) + 3 * sd(log(locate_date_test.df$response_time/1000)),]
 
 #response time data frame
 locate_date_RT.df <- aggregate(log(locate_date_test.df$response_time/1000), list(locate_date_test.df$user_id,
@@ -311,10 +312,11 @@ read_value.df$user_id <- factor(read_value.df$user_id)
 #subset to test_data
 read_value_test.df <- read_value.df[read_value.df$training == F,]
 
-read_value_outliers.df <- read_value_test.df[read_value_test.df$response_time > mean(read_value_test.df$response_time) + 3 * sd(read_value_test.df$response_time),]
+read_value_outliers_init.df <- read_value_test.df[read_value_test.df$response_time > mean(read_value_test.df$response_time) + 3 * sd(read_value_test.df$response_time),]
+read_value_outliers.df <- read_value_test.df[log(read_value_test.df$response_time/1000) > mean(log(read_value_test.df$response_time/1000)) + 3 * sd(log(read_value_test.df$response_time/1000)),]
 
 #remove RT outliers (mean + 3 * SD)
-read_value_test.df <- read_value_test.df[read_value_test.df$response_time < mean(read_value_test.df$response_time) + 3 * sd(read_value_test.df$response_time),]
+read_value_test.df <- read_value_test.df[log(read_value_test.df$response_time/1000) < mean(log(read_value_test.df$response_time/1000)) + 3 * sd(log(read_value_test.df$response_time/1000)),]
 
 #response time data frame
 read_value_RT.df <- aggregate(log(read_value_test.df$response_time/1000), list(read_value_test.df$user_id,
@@ -439,10 +441,11 @@ locate_minmax.df$normalized_chron_distance[locate_minmax.df$normalized_chron_dis
 #subset to test_data
 locate_minmax_test.df <- locate_minmax.df[locate_minmax.df$training == F,]
 
-locate_minmax_outliers.df <- locate_minmax_test.df[locate_minmax_test.df$response_time > mean(locate_minmax_test.df$response_time) + 3 * sd(locate_minmax_test.df$response_time),]
+locate_minmax_outliers_init.df <- locate_minmax_test.df[locate_minmax_test.df$response_time > mean(locate_minmax_test.df$response_time) + 3 * sd(locate_minmax_test.df$response_time),]
+locate_minmax_outliers.df <- locate_minmax_test.df[log(locate_minmax_test.df$response_time/1000) > mean(log(locate_minmax_test.df$response_time/1000)) + 3 * sd(log(locate_minmax_test.df$response_time/1000)),]
 
 #remove RT outliers (mean + 3 * SD)
-locate_minmax_test.df <- locate_minmax_test.df[locate_minmax_test.df$response_time < mean(locate_minmax_test.df$response_time) + 3 * sd(locate_minmax_test.df$response_time),]
+locate_minmax_test.df <- locate_minmax_test.df[log(locate_minmax_test.df$response_time/1000) < mean(log(locate_minmax_test.df$response_time/1000)) + 3 * sd(log(locate_minmax_test.df$response_time/1000)),]
 
 #response time data frame
 locate_minmax_RT.df <- aggregate(log(locate_minmax_test.df$response_time/1000), list(locate_minmax_test.df$user_id,
@@ -558,10 +561,11 @@ compare_within.df$user_id <- factor(compare_within.df$user_id)
 #subset to test_data
 compare_within_test.df <- compare_within.df[compare_within.df$training == F,]
 
-compare_within_outliers.df <- compare_within_test.df[compare_within_test.df$response_time > mean(compare_within_test.df$response_time) + 3 * sd(compare_within_test.df$response_time),]
+compare_within_outliers_init.df <- compare_within_test.df[compare_within_test.df$response_time > mean(compare_within_test.df$response_time) + 3 * sd(compare_within_test.df$response_time),]
+compare_within_outliers.df <- compare_within_test.df[log(compare_within_test.df$response_time/1000) > mean(log(compare_within_test.df$response_time/1000)) + 3 * sd(log(compare_within_test.df$response_time/1000)),]
 
 #remove RT outliers (mean + 3 * SD)
-compare_within_test.df <- compare_within_test.df[compare_within_test.df$response_time < mean(compare_within_test.df$response_time) + 3 * sd(compare_within_test.df$response_time),]
+compare_within_test.df <- compare_within_test.df[log(compare_within_test.df$response_time/1000) < mean(log(compare_within_test.df$response_time/1000)) + 3 * sd(log(compare_within_test.df$response_time/1000)),]
 
 #response time data frame
 compare_within_RT.df <- aggregate(log(compare_within_test.df$response_time/1000), list(compare_within_test.df$user_id,
@@ -683,10 +687,11 @@ compare_between.df$user_id <- factor(compare_between.df$user_id)
 #subset to test_data
 compare_between_test.df <- compare_between.df[compare_between.df$training == F,]
 
-compare_between_outliers.df <- compare_between_test.df[compare_between_test.df$response_time > mean(compare_between_test.df$response_time) + 3 * sd(compare_between_test.df$response_time),]
+compare_between_outliers_init.df <- compare_between_test.df[compare_between_test.df$response_time > mean(compare_between_test.df$response_time) + 3 * sd(compare_between_test.df$response_time),]
+compare_between_outliers.df <- compare_between_test.df[log(compare_between_test.df$response_time/1000) > mean(log(compare_between_test.df$response_time/1000)) + 3 * sd(log(compare_between_test.df$response_time/1000)),]
 
 #remove RT outliers (mean + 3 * SD)
-compare_between_test.df <- compare_between_test.df[compare_between_test.df$response_time < mean(compare_between_test.df$response_time) + 3 * sd(compare_between_test.df$response_time),]
+compare_between_test.df <- compare_between_test.df[log(compare_between_test.df$response_time/1000) < mean(log(compare_between_test.df$response_time/1000)) + 3 * sd(log(compare_between_test.df$response_time/1000)),]
 
 #response time data frame
 compare_between_RT.df <- aggregate(log(compare_between_test.df$response_time/1000), list(compare_between_test.df$user_id,
